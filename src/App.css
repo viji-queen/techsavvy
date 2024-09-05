@@ -74,22 +74,23 @@ ul {
 .top-bar li {
   list-style: none;
 }
-.layout{
+.layout {
   display: flex;
   flex-direction: row;
   justify-content: safe;
   height: 100%;
 }
-.main-content{
-  margin-left: 70px; /* Account for sidebar width */
-  width: calc(100% - 70px); /* Ensure it takes the remaining space */
-  overflow: auto; /* Prevent content overflow from causing scroll bars */
+.main-content {
+  margin-left: 70px;
+  width: calc(100% - 70px);
+  overflow: auto;
 }
 @media (max-width: 768px) {
   .main-content {
     margin-left: 0;
-    width: 100%; /* Full width on smaller screens */
-  }}
+    width: 100%;
+  }
+}
 .sidebar {
   width: 70px;
   height: 100%;
@@ -103,28 +104,22 @@ ul {
   position: fixed;
 }
 
-
-
-
-
 .performance-head {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .metrics-btn {
-  background-color: #fff; /* Keep the background color the same on hover */
+  background-color: #fff;
   height: 40px;
-  border: 1px solid #ccc; /* Add a 1px border */
+  border: 1px solid #ccc;
 }
 
 .metrics-btn:hover {
-  background-color: #fff; /* Keep the background color the same on hover */
-  border-color: #ccc; /* Keep the border color the same on hover */
-  box-shadow: none; /* Remove any box shadow on hover */
+  background-color: #fff;
+  border-color: #ccc;
+  box-shadow: none;
 }
-
-
 
 .expanded {
   width: 250px;
@@ -167,12 +162,21 @@ ul {
   text-decoration: none;
   font-weight: 100;
   margin-left: 50px;
+  width: 10px;
+  text-align: center;
 }
 
-.td-cell {
-  display: inline-block;
-  width: 31%;
-  height: 100%;
-  vertical-align: top;
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+th {
+  width: calc(100% / 21);
+  font-weight: 500;
+}
+td {
   text-align: center;
+  color: rgb(101, 7, 148);
+  font-weight: 400;
+  font-size: 10px;
 }

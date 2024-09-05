@@ -1,6 +1,5 @@
 import React from "react";
 const HeatmapTable = ({ data, total }) => {
-  console.log(data, "Table data");
 
   const getColor = (value, type) => {
     let intensity = 0;
@@ -20,17 +19,14 @@ const HeatmapTable = ({ data, total }) => {
       blue = 255; // Default to white for light colors
 
     if (type === "CPC") {
-      // Use a light orange-yellow scale for CPC
       red = Math.floor(255); // Keep red high for warm color
       green = Math.floor((1 - intensity) * 200 + 55); // Mix green with white
       blue = Math.floor((1 - intensity) * 120 + 135); // Light blue shade mixed
     } else if (type === "CR_perc") {
-      // Use a light teal-blue scale for CR_perc
       red = Math.floor((1 - intensity) * 180 + 75); // Light pink to teal
       green = Math.floor((1 - intensity) * 220 + 35); // Light blue shade
       blue = Math.floor(255); // Keep blue higher for softer color
     } else if (type === "ROAS") {
-      // Use a light purple-violet scale for ROAS
       red = Math.floor((1 - intensity) * 230 + 50); // Mix red with white
       green = Math.floor((1 - intensity) * 130 + 125); // Light purple
       blue = Math.floor(255); // Keep blue for pastel violet look
@@ -38,6 +34,7 @@ const HeatmapTable = ({ data, total }) => {
 
     return `rgb(${red}, ${green}, ${blue})`; // Return the color based on intensity
   };
+  console.log(total);
 
   const days = [
     "Sunday",
@@ -48,26 +45,51 @@ const HeatmapTable = ({ data, total }) => {
     "Friday",
     "Saturday",
   ];
-  const heading = "CPC CR_perc ROAS";
+
   return (
     <table className="heatmap-table">
       <thead>
         <tr>
-          <th className="table-hd"></th>
-          {days.map((day, index) => (
-            <th key={index} className="table-hd">
+          <th></th>
+          {days.map((day, i) => (
+            <th key={i} colSpan={3} className="table-hd">
               {day}
             </th>
           ))}
         </tr>
         <tr>
           <th></th>
-          
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th></th>
+          <th className="table-hd ">CPC</th>
+          <th className="table-hd ">CR_perc</th>
+          <th className="table-hd ">ROAS</th>
+          <th className="table-hd ">CPC</th>
+          <th className="table-hd ">CR_perc</th>
+          <th className="table-hd ">ROAS</th>
+          <th className="table-hd ">CPC</th>
+          <th className="table-hd ">CR_perc</th>
+          <th className="table-hd ">ROAS</th>
+          <th className="table-hd ">CPC</th>
+          <th className="table-hd ">CR_perc</th>
+          <th className="table-hd ">ROAS</th>
+          <th className="table-hd ">CPC</th>
+          <th className="table-hd ">CR_perc</th>
+          <th className="table-hd ">ROAS</th>
+          <th className="table-hd ">CPC</th>
+          <th className="table-hd ">CR_perc</th>
+          <th className="table-hd ">ROAS</th>
+          <th className="table-hd ">CPC</th>
+          <th className="table-hd ">CR_perc</th>
+          <th className="table-hd ">ROAS</th>
         </tr>
       </thead>
       <tbody>
         {Object.keys(data).map((time, index) => (
-          <tr key={index}>
+          <tr key={index} className="val-tr">
             <td className="table-hd">
               {time === "00:00"
                 ? "12 am"
@@ -78,9 +100,9 @@ const HeatmapTable = ({ data, total }) => {
                   (parseInt(time.split(":")[0]) >= 12 ? "pm" : "am")}
             </td>
             {days.map((day, index) => (
-              <td key={index} className="td-container">
-                <span
-                  className="td-cell"
+              <>
+                <td
+                  key={index}
                   style={{
                     backgroundColor: getColor(
                       data[time][day].CPC.toFixed(2),
@@ -88,10 +110,10 @@ const HeatmapTable = ({ data, total }) => {
                     ),
                   }}
                 >
-                  {data[time][day].CPC.toFixed(2)}
-                </span>{" "}
-                <span
-                  className="td-cell"
+                  {data[time][day].CPC.toFixed(4)}
+                </td>
+                <td
+                  key={index}
                   style={{
                     backgroundColor: getColor(
                       data[time][day].CR_perc.toFixed(2),
@@ -99,10 +121,10 @@ const HeatmapTable = ({ data, total }) => {
                     ),
                   }}
                 >
-                  {data[time][day].CR_perc.toFixed(2)}
-                </span>{" "}
-                <span
-                  className="td-cell"
+                  {data[time][day].CR_perc.toFixed(4)}
+                </td>
+                <td
+                  key={index}
                   style={{
                     backgroundColor: getColor(
                       data[time][day].ROAS.toFixed(2),
@@ -110,32 +132,22 @@ const HeatmapTable = ({ data, total }) => {
                     ),
                   }}
                 >
-                  {" "}
-                  {data[time][day].ROAS.toFixed(2)}
-                </span>
-              </td>
+                  {data[time][day].ROAS.toFixed(4)}
+                </td>
+              </>
             ))}
           </tr>
         ))}
         <tr>
-          <td>
-            <b>Total</b>
+          <td >
+            <b  style={{color:'black'}}>Total</b>
           </td>
-          {Array(Math.ceil(total.length / 3))
-            .fill()
-            .map((_, i) => (
-              <td key={i}>
-                {total.slice(i * 3, (i + 1) * 3).map((item, j) => (
-                  <span key={j} className="td-cell" style={{ fontWeight: 500 }}>
-                    {item.toFixed(2)}
-                  </span>
-                ))}
-              </td>
-            ))}
+          {total.map((t, i) => (
+            <td key={i}  style={{color:'black'}}>{t.toFixed(4)}</td>
+          ))}
         </tr>
       </tbody>
     </table>
-   
   );
 };
 

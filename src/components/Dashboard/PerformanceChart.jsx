@@ -65,73 +65,59 @@ function PerformanceChart() {
 
   return (
     <>
-   <div className="perf">
-   <div className="card-header bg-white performance-head ">
-        <div className="left">
-          <h6>PerformanceChart</h6>
-          <span style={{ fontSize: "small", color: "grey" }}>
-            Key Metrics for Dayparting Schedule Performance Evaluation
-          </span>
-        </div>
-        <div className="right">
-          <FormGroup>
-            <FormControl
-              sx={{ m: 1, minWidth: "250px", minHeight: "10px" }}
-              style={{ margin: 0, padding: 0 }}
-            >
-              <button className=" metrics-btn" onClick={handleSelect}>
-                Select Metrics  <MdKeyboardArrowDown />
-              </button>
-            </FormControl>
-          </FormGroup>
-        </div>
-      </div>
-      {showCard && (
-        <div
-          ref={cardRef}
-          className="card h-25"
-          style={{
-            position: "absolute",
-            top: "10%",
-            right: "0",
-            zIndex: "1000",
-            padding: "20px",
-            overflowY: "auto",
-            width: "260px",
-          }}
-        >
-          <div className="row">
+      <div className="perf">
+        <div className="card-header bg-white performance-head ">
+          <div className="left">
+            <h6>PerformanceChart</h6>
+            <span style={{ fontSize: "small", color: "grey" }}>
+              Key Metrics for Dayparting Schedule Performance Evaluation
+            </span>
+          </div>
+          <div className="right">
             <FormGroup>
-              {metrics.length > 0 &&
-                metrics.map((metric) => (
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label={metric.label}
-                    key={metric.label}
-                  />
-                ))}
+              <button className=" metrics-btn" onClick={handleSelect}>
+                Select Metrics <MdKeyboardArrowDown />
+              </button>
             </FormGroup>
-            <div className="row ">
-              <div className="col">
-                {" "}
-                <button className="btn btn-light w-100 ">Cancel</button>
-              </div>
-              <div className="col">
-                {" "}
-                <button className="btn btn-primary   w-100">Apply</button>
-              </div>
-            </div>
           </div>
         </div>
-      )}
+        {showCard && (
+          <div
+            ref={cardRef}
+            className="card h-25"
+            style={{
+              position: "absolute",
+              top: "10%",
+              right: "0",
+              zIndex: "1000",
+              padding: "20px",
+              overflowY: "auto",
+              width: "157px",
+            }}
+          >
+            <div className="row">
+              <FormGroup>
+                {metrics.length > 0 &&
+                  metrics.map((metric) => (
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label={metric.label}
+                      key={metric.label}
+                    />
+                  ))}
+              </FormGroup>
 
-     
-     
-       <LineChart />
-   </div>
-   
-    
-    
+              <button className="btn btn-light  px-1 py-0 w-50 ">Cancel</button>
+
+              <button className="btn btn-primary  px-1 py-0  w-50 ">
+                Apply
+              </button>
+            </div>
+          </div>
+        )}
+
+        <LineChart />
+      </div>
     </>
   );
 }

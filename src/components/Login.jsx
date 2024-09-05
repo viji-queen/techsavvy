@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from '../assets/Frame_4.png'
+import logo from "../assets/Frame_4.png";
 function Login() {
   const initialState = {
     email: "",
@@ -60,52 +60,53 @@ function Login() {
 
   return (
     <>
-
       <div className="login-page">
         <div className="logo-div bg-transparent b-none">
-          <img src={logo} alt="logo" srcset="" width={'50px'} height={'50px'} />
-      <span className=" "><b>TECHSAVVY</b></span>
-      </div>
-      <div className="card form-container">
-
-       <div className="heading">
-       <h1>Welcome Back!</h1>
-       </div>
-        <form onSubmit={handleLogin}>
-          <div className="input-container">
-            <label htmlFor="email" className="">
-            <span style={{fontSize: 'small'}}>Email</span>            </label>
-            <input
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              name="email"
-              className="input-field"
-              placeholder="Email"
+          <img src={logo} alt="logo" srcset="" width={"50px"} height={"50px"} />
+          <span className=" ">
+            <b>TECHSAVVY</b>
+          </span>
+        </div>
+        <div className="card form-container">
+          <div className="heading">
+            <h1>Welcome Back!</h1>
+          </div>
+          <form onSubmit={handleLogin}>
+            <div className="input-container">
+              <label htmlFor="email" className="">
+                <span style={{ fontSize: "small" }}>Email</span>{" "}
+              </label>
+              <input
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                name="email"
+                className="input-field"
+                placeholder="Email"
               />
-            {errors.email && <span className="error">{errors.email}</span>}
-          </div>
-          <div className="input-container">
-            <label htmlFor="password" >
-            <span style={{fontSize: 'small'}}>Password</span>  
-            </label>
-            <input
-            placeholder="Password"
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
-              name="password"
-className="input-field"
-            />
-            {errors.password && (
-              <span className="error">{errors.password}</span>
-            )}
-          </div>
-          <div className="input-container">
-            <button id="login-button">Sign in</button>
-          </div>
-        </form>
-      </div>
+              {errors.email && <span className="error">{errors.email}</span>}
+            </div>
+            <div className="input-container">
+              <label htmlFor="password">
+                <span style={{ fontSize: "small" }}>Password</span>
+              </label>
+              <input
+                placeholder="Password"
+                type="password"
+                value={formData.password}
+                onChange={handleChange}
+                name="password"
+                className="input-field"
+              />
+              {errors.password && (
+                <span className="error">{errors.password}</span>
+              )}
+            </div>
+            <div className="input-container">
+              <button id="login-button">Sign in</button>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );
