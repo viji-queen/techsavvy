@@ -120,7 +120,19 @@ ul {
   border-color: #ccc;
   box-shadow: none;
 }
-
+.metrics-card{
+  background-color: white;
+  position: absolute;
+  top: 10%;
+  right: 0;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+  width: 157px;
+}
+.metrics-card::-webkit-scrollbar {
+  display: none; 
+}
 .expanded {
   width: 250px;
   transition: width 0.5s ease-in-out;

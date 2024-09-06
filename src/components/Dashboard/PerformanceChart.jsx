@@ -84,15 +84,9 @@ function PerformanceChart() {
         {showCard && (
           <div
             ref={cardRef}
-            className="card h-25"
+            className=" h-25 metrics-card"
             style={{
-              position: "absolute",
-              top: "10%",
-              right: "0",
-              zIndex: "1000",
-              padding: "20px",
-              overflowY: "auto",
-              width: "157px",
+             
             }}
           >
             <div className="row">
@@ -100,14 +94,23 @@ function PerformanceChart() {
                 {metrics.length > 0 &&
                   metrics.map((metric) => (
                     <FormControlLabel
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          sx={{ "& .MuiSvgIcon-root": { fontSize: 18 } }}
+                        />
+                      }
                       label={metric.label}
                       key={metric.label}
+                      style={{ fontWeight: "50" }}
                     />
                   ))}
               </FormGroup>
 
-              <button className="btn btn-light  px-1 py-0 w-50 ">Cancel</button>
+              <button className="btn btn-light  px-1 py-0  w-50 "
+              onClick={()=>setShowCard(false)}
+              >
+                Cancel
+              </button>
 
               <button className="btn btn-primary  px-1 py-0  w-50 ">
                 Apply

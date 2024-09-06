@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/Frame_4.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function Login() {
   const initialState = {
     email: "",
@@ -43,16 +46,25 @@ function Login() {
           }
         );
         if (response.ok) {
+          console.log("toast start");
+
+          toast.success("Login successful!");
+          console.log("toast end");
+
           const data = await response.json();
           // Store the JWT token in localStorage
           localStorage.setItem("jwtToken", data.token);
-          navigate("/dashboard");
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 2000);
         } else {
           const errMessage = await response.json();
+          toast.error(errMessage.message || "Login failed!");
           console.log(errMessage);
         }
       }
     } catch {
+      toast.error("An error occurred during login.");
       console.log("An Error has occured.");
     }
   };
@@ -107,6 +119,7 @@ function Login() {
             </div>
           </form>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

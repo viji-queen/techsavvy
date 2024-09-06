@@ -5,7 +5,6 @@ import { FaRegCompass } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
-  const navigate = useNavigate();
 
   const [isExpanded, setIsExpanded] = useState(false);
   return (
@@ -18,7 +17,7 @@ const SideBar = () => {
     >
       <li className="card-header bg-white">
         <img src={logo} alt="logo" className="logo " />
-        {isExpanded && <span className="menu-item">TECHSAVVY</span>}
+        {isExpanded && <span className=" menu-item">TECHSAVVY</span>}
       </li>
       <li className="my-4" >
         <img src={dashoboard_icon} alt="logo" className="logo " />
